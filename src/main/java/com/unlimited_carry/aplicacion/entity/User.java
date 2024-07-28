@@ -19,8 +19,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity 
-public class User implements Serializable{
+@Entity
+public class User implements Serializable {
 
 	/**
 	 * 
@@ -28,13 +28,12 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1671417246199538663L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
-	@GenericGenerator(name="native",strategy="native")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private Long id;
-	
+
 	@Column
 	@NotBlank
-	@Size(min=5,max=8,message="No se cumple las reglas del tamano")
 	private String firstName;
 	@Column
 	@NotBlank
@@ -47,16 +46,16 @@ public class User implements Serializable{
 	private String username;
 	@Column
 	@NotBlank
+	private String NPhone;
+	@Column
+	@NotBlank
 	private String password;
-	
+
 	@Transient
 	private String confirmPassword;
-	
-	@Size(min=1)
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles",
-			joinColumns=@JoinColumn(name="user_id"),
-			inverseJoinColumns=@JoinColumn(name="role_id"))
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
 	public User() {
@@ -108,6 +107,14 @@ public class User implements Serializable{
 		this.username = username;
 	}
 
+	public String getNPhone() {
+		return NPhone;
+	}
+
+	public void setNPhone(String nPhone) {
+		NPhone = nPhone;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -135,7 +142,7 @@ public class User implements Serializable{
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", username=" + username +", nPhone="+NPhone+ ", password=" + password + ", confirmPassword=" + confirmPassword
 				+ ", roles=" + roles + "]";
 	}
 

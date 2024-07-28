@@ -1,63 +1,121 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
-
-    <!--JQUERY-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
-    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
-    <!-- Los iconos tipo Solid de Fontawesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-
-    <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
-    <style>
-    .titulo-centrado {
-      text-align: center;
-      padding: 20px 0;
-      background-color: #5882FA; 
-    }
-    h1 {
-      font-size: 36px;
-      color: #333; 
-    }
-  </style>
-
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="stylesheet" href="css/index.css" th:href="@{/css/index.css}">
 </head>
+
 <body>
-<h1 class="titulo-centrado">Aplicacion web para registro y gestión de servicios de transporte de mudanzas en Bogotá DC</h1>
-    <div class="modal-dialog text-center">
-        <div class="col-sm-8 main-section">
-            <div class="modal-content">
-                <div class="col-12 user-img">
-                    <img src="static/img/user.png" th:src="@{/img/user.png}"/>
-                </div>
-                <form class="col-12" th:action="@{/login}" method="post">
-                    <div class="form-group" id="user-group">
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
-                    </div>
-                    <div class="form-group" id="contrasena-group">
-                        <input type="password" class="form-control" placeholder="Contrasena" name="password"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
-                </form>
-                <div class="col-12 forgot">
-                    <p><a href="#">Recordar contrasena?</a></p>
-                    <p><a href="#" th:href="@{/signup}">Crear Usuario - Registrarse</a>
-                </div>
-                <div th:if="${param.error}" class="alert alert-danger" role="alert">
-		            Usuario o contraseña invalidos.
-		        </div>
-		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
-		            has cerrado sesion con exito.
-		        </div>
-            </div>
-        </div>
-    </div>
+
+	<div class="container">
+		<!-- Encabezado -->
+		<h1 class="titulo-centrado mb-4">Aplicación web para registro y
+			gestión de servicios de transporte de mudanzas en Bogotá DC</h1>
+
+
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-body">
+						<div class="user-img text-center">
+							<img src="img/user.png" th:src="@{/img/user.png}"
+								alt="User Image">
+						</div>
+
+						<form th:action="@{/login}" method="post">
+						
+							<div class="form-group">
+								<input type="text" class="form-control"
+									placeholder="Nombre de usuario" name="username">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control"
+									placeholder="Contraseña" name="password">
+							</div>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary">
+									<i class="fas fa-sign-in-alt"></i> Ingresar
+								</button>
+								<a th:href="@{/signup}" class="btn btn-success ">Registrarse</a>
+							</div>
+
+						</form>
+
+						<div class="text-center">
+							<a th:href="@{/soporte_Usuario}" class="btn btn-info"> <i
+								class="fab fa-whatsapp"></i> Soporte Usuario
+							</a>
+							<div th:if="${param.error}" class="alert alert-danger mt-3"
+								role="alert">Usuario o contraseña inválidos.</div>
+							<div th:if="${param.logout}" class="alert alert-success"
+								role="alert">Has cerrado sesión con éxito.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="beneficio">
+					<div class="md-15-center">
+						<div class="beneficio-card">
+							<h3>Beneficios de utilizar nuestra plataforma:</h3>
+							<p>Nuestra aplicación te ofrece una experiencia de mudanza
+								sin problemas, con los siguientes beneficios:</p>
+							<ul>
+								<li>Conexión rápida y segura con transportistas confiables
+									y profesionales en Bogotá DC.</li>
+								<li>Facilita el proceso de búsqueda y reserva de servicios
+									de transporte de mudanzas.</li>
+								<li>Historial detallado de servicios para un seguimiento
+									transparente de tus mudanzas pasadas.</li>
+								<li>Comunicación directa a través de chat en tiempo real
+									para discutir detalles del servicio.</li>
+								<li>Calificaciones y reseñas para ayudarte a tomar
+									decisiones informadas al elegir un transportista.</li>
+							</ul>
+						</div>
+						<div class="">
+
+							<div class="md-15-center">
+								<div class="beneficio-card">
+									<h3>Funcionalidades clave de nuestra plataforma:</h3>
+									<p>Nuestra aplicación cuenta con las siguientes
+										funcionalidades clave para hacer que tu experiencia de mudanza
+										sea más fácil y eficiente:</p>
+									<ul>
+										<li>Registro de usuarios y transportistas.</li>
+										<li>Búsqueda personalizada de servicios de transporte.</li>
+										<li>Disponibilidad de servicio en tiempo real.</li>
+										<li>Visualización de opciones de transporte disponibles.</li>
+										<li>Chat en tiempo real para comunicación directa.</li>
+										<li>Historial de servicios para seguimiento y referencia.</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h2 class="text-center">Estamos ubicados en:</h2>
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63631.21514108576!2d-74.26027311867881!3d4.602807587305044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9e286df75e37%3A0x56dfbbf001fecc98!2sConjunto%20Residencial%20Menta!5e0!3m2!1ses!2sco!4v1716012930713!5m2!1ses!2sco"
+				width="800" height="300" style="border: 0;" allowfullscreen=""
+				loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</div>
+	</div>
+
 </body>
+
 </html>
+

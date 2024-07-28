@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>Información y formulario del usuario</title>
-	
+	<title>Información y perfil del usuario</title>
+
 	<!--JQUERY-->
-	<script
- 		src="https://code.jquery.com/jquery-3.3.1.min.js"
- 			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
- 			crossorigin="anonymous"></script>
-	
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script 
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+
 	<!-- Los iconos tipo Solid de Fontawesome-->
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-	
+
 	<!-- Nuestro css-->
-	<link rel="stylesheet" type="text/css" href="static/css/user-form.css"
-		th:href="@{/css/user-form.css}">
-	<style>	
-	.card {
-		border: 1px solid #dcdcdc;
-		border-radius: 5px;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	}
-	
-	.card-header {
-		background-color: #007bff;
-		color: #fff;
-		text-align: center;
-		padding: 15px;
-	}
-	
-	.card-body {
-		padding: 20px;
-	}
-</style>
+	<link rel="stylesheet" type="text/css" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
+	<style>
+		.card {
+			border: 1px solid #dcdcdc;
+			border-radius: 5px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.card-header {
+			background-color: #007bff;
+			color: #fff;
+			text-align: center;
+			padding: 15px;
+		}
+
+		.card-body {
+			padding: 20px;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="container">
 		<div class="mx-auto col-sm-8 main-section" >
@@ -57,4 +54,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad de Vehículos</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Disponibilidad de Vehículos</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Marca</th>
+                                        <th>Modelo</th>
+                                        <th>Placa</th>
+                                        <th>Capacidad de carga</th>
+                                        <th>Reservar</th> <!-- Nueva columna para el botón de reserva -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="vehiculo : ${vehiculos}" th:if="${vehiculo.estado == true}">
+                                        <td th:text="${vehiculo.id}"></td>
+                                        <td th:text="${vehiculo.brand}"></td>
+                                        <td th:text="${vehiculo.model}"></td>
+                                        <td th:text="${vehiculo.plate}"></td>
+                                        <td th:text="${vehiculo.cargoCapacity}"></td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn-reservar"
+                                                data-toggle="modal" data-target="#confirmarModal">Reservar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a class="btn btn-secondary btn-block mt-3" th:href="@{/userForm}" role="button">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Modales de mensajes de servicio -->
+    <div class="modal fade" id="servicioRechazadoModal" tabindex="-1" role="dialog"
+        aria-labelledby="servicioRechazadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="servicioRechazadoModalLabel">Servicio
+                        Rechazado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">El servicio ha sido rechazado.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="servicioConfirmadoModal" tabindex="-1" role="dialog"
+        aria-labelledby="servicioConfirmadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="servicioConfirmadoModalLabel">Chat de Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="chat-box">
+                        <div class="chat-message received">
+                            <div class="message">¡Excelente elección! Tu servicio ha sido confirmado.</div>
+                        </div>
+                        <div class="chat-message received">
+                            <div class="message">¡Nos vemos pronto!</div>
+                        </div>
+                        <div class="chat-message sent">
+                            <div class="message">Gracias</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar el mensaje de "Servicio rechazado"
+        function mostrarMensajeRechazado() {
+            $("#servicioRechazadoModal").modal("show");
+            setTimeout(function () {
+                $("#servicioRechazadoModal").modal("hide");
+            }, 3000); // Ocultar el modal después de 3 segundos
+        }
+
+        // Función para mostrar el mensaje de "Servicio confirmado" y redirigir a WhatsApp
+        function mostrarMensajeConfirmadoYRedirigir() {
+            $("#servicioConfirmadoModal").modal("show");
+            setTimeout(function () {
+                $("#servicioConfirmadoModal").modal("hide");
+                // Redirigir a WhatsApp después de 3 segundos
+                window.location.href = "https://web.whatsapp.com/send?phone=573003757444&amp;text=¡Hola!"; // Reemplaza NUMERO_DE_TELEFONO por el número de teléfono
+            }, 3000); // Ocultar el modal después de 3 segundos
+        }
+
+        // Función para manejar el clic en el botón Reservar
+        $(document).ready(function () {
+            $(".btn-reservar").click(function () {
+                $("#confirmarModal").modal("show");
+            });
+
+            $(".btn-confirmar").click(function () {
+                mostrarMensajeConfirmadoYRedirigir(); // Mostrar mensaje de confirmación y redirigir a WhatsApp
+                $("#confirmarModal").modal("hide");
+            });
+
+            $(".btn-rechazar").click(function () {
+                mostrarMensajeRechazado(); // Mostrar mensaje de rechazo
+                $("#confirmarModal").modal("hide");
+            });
+        });
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarModalLabel">Confirmar
+                        Reserva</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">¿Deseas reservar este vehículo?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-rechazar" data-dismiss="modal">Rechazar</button>
+                    <button type="button" class="btn btn-primary btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

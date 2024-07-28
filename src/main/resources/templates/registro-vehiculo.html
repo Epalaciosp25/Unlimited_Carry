@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registro de Vehículo</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
+	<style>
+		body {
+			background-color: #f8f9fa;
+			/* Cambiado el color de fondo del cuerpo */
+		}
+
+		.card {
+			margin-top: 50px;
+			/* Añadido margen superior para separar la tarjeta del borde superior */
+			border-radius: 20px;
+			/* Añadido para suavizar las esquinas de la tarjeta */
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+			/* Añadido para dar una sombra a la tarjeta */
+		}
+
+		.card-header {
+			background-color: #007bff;
+			/* Cambiado el color de fondo del encabezado de la tarjeta */
+			color: #ffffff;
+			/* Añadido para que el texto sea legible en el fondo azul */
+			border-top-left-radius: 20px;
+			/* Añadido para suavizar la esquina superior izquierda del encabezado */
+			border-top-right-radius: 20px;
+			/* Añadido para suavizar la esquina superior derecha del encabezado */
+		}
+
+		.card-body {
+			padding: 30px;
+			/* Añadido para aumentar el espacio interno del cuerpo de la tarjeta */
+		}
+
+		.btn {
+			border-radius: 20px;
+			/* Añadido para suavizar las esquinas de los botones */
+			text-transform: uppercase;
+			/* Añadido para convertir el texto de los botones a mayúsculas */
+			letter-spacing: 1px;
+			/* Añadido para aumentar el espacio entre letras */
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="mb-0">Registro de Vehículo</h4>
+					</div>
+					<div class="card-body">
+						<form action="/registro-vehiculo" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="brand">Marca:</label> <input type="text" id="brand" name="brand"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="model">Modelo:</label> <input type="text" id="model" name="model"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="plate">Placa:</label> <input type="text" id="plate" name="plate"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="cargo_capacity">Capacidad de carga:</label> <input type="number"
+									id="cargo_capacity" name="cargoCapacity" class="form-control" required>
+							</div>
+
+							<div class="form-group">
+								<label for="photo">Foto del vehiculo:</label> <input type="file" 
+									class="form-control-file" >
+							</div>
+							<div class="form-group">
+								<label for="photo">Foto licencia de transito:</label> <input type="file" 
+									class="form-control-file" >
+							</div>
+							<div class="form-group">
+								<label for="photo">Foto Carta de Propiedad:</label> <input type="file" 
+									class="form-control-file" >
+							</div>
+							<div class="form-group">
+								<label for="photo">Pdf de Soat:</label> <input type="file" 
+									class="form-control-file" >
+							</div><div class="form-group">
+								<label for="photo">pdf de Tecnico mecanica:</label> <input type="file" 
+									class="form-control-file" >
+							</div>
+							
+							<div class="form-group">
+								<label for="estado">Estado en Plataforma:</label> <select id="estado" name="estado"
+									class="form-control" required>
+									<option value="true">Activo</option>
+									<option value="false">Inactivo</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<a class="btn btn-secondary" th:href="@{'/userForm/cancel'}">Cancelar</a>
+
+								<button type="submit" class="btn btn-primary">Registrar
+									vehículo</button>
+							</div>
+							<div th:if="${error}" class="alert alert-danger" role="alert">
+								<span th:text="${error}"></span>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap JS, Popper.js, jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

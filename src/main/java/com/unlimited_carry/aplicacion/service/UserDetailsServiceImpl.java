@@ -21,20 +21,21 @@ import com.unlimited_carry.aplicacion.repository.UserRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-    UserRepository userRepository;
-	
+	UserRepository userRepository;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		com.unlimited_carry.aplicacion.entity.User appUser = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Login Username Invalido."));
-		
-		Set<GrantedAuthority> grantList = new HashSet<GrantedAuthority>(); 
-		for (Role role: appUser.getRoles()) {
+
+		com.unlimited_carry.aplicacion.entity.User appUser = userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Login Username Invalido."));
+
+		Set<GrantedAuthority> grantList = new HashSet<GrantedAuthority>();
+		for (Role role : appUser.getRoles()) {
 			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getDescription());
-            grantList.add(grantedAuthority);
+			grantList.add(grantedAuthority);
 		}
-		UserDetails user = (UserDetails) new User(username,appUser.getPassword(),grantList);
-		
+		UserDetails user = (UserDetails) new User(username, appUser.getPassword(), grantList);
+
 		return user;
 	}
 

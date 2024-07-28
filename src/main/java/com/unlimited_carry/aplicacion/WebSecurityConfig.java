@@ -14,48 +14,33 @@ import com.unlimited_carry.aplicacion.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig  extends  WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	String[] resources = new String[]{
-            "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
-    };
-	
+	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**" };
+
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-    	http
-        .authorizeRequests()
-        .antMatchers(resources).permitAll()  
-        .antMatchers("/","/index","/signup").permitAll()
-            .anyRequest().authenticated()
-            .and()
-        .formLogin()
-            .loginPage("/login")
-            .permitAll()
-            .defaultSuccessUrl("/userForm")
-            .failureUrl("/login?error=true")
-            .usernameParameter("username")
-            .passwordParameter("password")
-            .and()
-            .csrf().disable()
-        .logout()
-            .permitAll()
-            .logoutSuccessUrl("/login?logout");
-    }
-	
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/soporte_Usuario").permitAll().antMatchers(resources).permitAll()
+				.antMatchers("/", "/index", "/signup").permitAll().anyRequest().authenticated().and().formLogin()
+				.loginPage("/login").permitAll().defaultSuccessUrl("/userForm").failureUrl("/login?error=true")
+				.usernameParameter("username").passwordParameter("password").and().csrf().disable().logout().permitAll()
+				.logoutSuccessUrl("/login?logout");
+	}
+ 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+	@Bean
+	BCryptPasswordEncoder passwordEncoder() {
 		bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-        return bCryptPasswordEncoder;
-    }
-    
-    @Autowired
-    UserDetailsService userDetailsService;
-    
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-    
+		return bCryptPasswordEncoder;
+	}
+
+	@Autowired
+	UserDetailsService userDetailsService;
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+
 }
