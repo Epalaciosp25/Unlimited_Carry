@@ -20,6 +20,12 @@ body {
 
 }
 
+.ubicacion{
+	text-align: center;
+	padding:15px;
+	background-color: #007bff; 
+}
+
 .user-img img {
 	width: 150px;
 	/* Añadido para ajustar el tamaño de la imagen del usuario */
@@ -45,21 +51,15 @@ body {
 
 .btn-primary, .btn-success, .btn-info {
 	border-radius: 20px;
-	/* Añadido para suavizar las esquinas de los botones */
 	font-weight: bold;
-	/* Añadido para enfatizar el texto de los botones */
 	text-transform: uppercase;
-	/* Añadido para convertir el texto de los botones a mayúsculas */
 	letter-spacing: 1px;
-	/* Añadido para aumentar el espacio entre letras */
 }
 
 .btn-primary:hover, .btn-success:hover, .btn-info:hover {
 	opacity: 0.8;
-	/* Añadido para reducir ligeramente la opacidad de los botones al pasar el ratón */
 }
 
-/* Estilos adicionales para la información adicional */
 .beneficios {
 	margin-top: 30px;
 }
@@ -81,7 +81,6 @@ body {
 	margin-bottom: 0;
 }
 
-/* Estilos para el mapa */
 .map-container {
 	margin-top: 30px;
 	border-radius: 10px;
