@@ -32,7 +32,6 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	private Long id;
-
 	@Column
 	@NotBlank
 	private String firstName;
@@ -48,6 +47,8 @@ public class User implements Serializable {
 	@Column
 	@NotBlank
 	private String NPhone;
+	@NotBlank 
+	private String NDocument;
 	@Column
 	@NotBlank
 	private String password;
@@ -115,7 +116,15 @@ public class User implements Serializable {
 	public void setNPhone(String nPhone) {
 		NPhone = nPhone;
 	}
-
+	
+	public String getNDocument() {
+		return NDocument;
+	}
+	
+	public void setNDocument(String nDocument) {
+		NDocument= nDocument;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -143,7 +152,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", username=" + username +", nPhone="+NPhone+ ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", username=" + username +", nPhone="+NPhone+", nDocument="+NDocument+ ", password=" + password + ", confirmPassword=" + confirmPassword
 				+ ", roles=" + roles + "]";
 	}
 
@@ -157,6 +166,7 @@ public class User implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((NPhone == null) ? 0 : NPhone.hashCode());
+		result = prime * result + ((NDocument==null)? 0 : NDocument.hashCode()); 
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -176,6 +186,7 @@ public class User implements Serializable {
 	           Objects.equals(id, other.id) &&
 	           Objects.equals(lastName, other.lastName) &&
 	           Objects.equals(NPhone, other.NPhone) &&
+	           Objects.equals(NDocument, other.NDocument) &&
 	           Objects.equals(password, other.password) &&
 	           Objects.equals(roles, other.roles) &&
 	           Objects.equals(username, other.username);

@@ -8,7 +8,15 @@ or ${#authorization.expression('hasRole(''ROLE_SUPERVISOR'')')})">
 		<input class="form-control" type=hidden th:field="${userForm.id}"
 			th:if="${editMode}"> <input class="form-control" type=hidden
 			name="password" value="xxxx" th:if="${editMode}">
-
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">documento</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${userForm.NDocument}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('NDocument')}"
+					th:errors="*{NDocument}">NDocumento Error</div>
+			</div>
+		</div>
 		<div class="form-group row">
 			<label class="col-lg-3 col-form-label form-control-label">Nombre</label>
 			<div class="col-lg-9">
@@ -37,6 +45,7 @@ or ${#authorization.expression('hasRole(''ROLE_SUPERVISOR'')')})">
 					th:errors="*{email}">Name Error</div>
 			</div>
 		</div>
+		
 		<div class="form-group row">
 			<label class="col-lg-3 col-form-label form-control-label">Usuario</label>
 			<div class="col-lg-9">

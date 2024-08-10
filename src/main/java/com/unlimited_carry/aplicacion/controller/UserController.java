@@ -60,6 +60,8 @@ public class UserController {
 		model.addAttribute("roles", roles);
 		return "user-form/user-signup";
 	}
+	
+
 
 	@PostMapping("/signup")
 	public String signupAction(@Valid @ModelAttribute("userForm") User user, BindingResult result, ModelMap model) {
@@ -81,6 +83,17 @@ public class UserController {
 			}
 		}
 		return index();
+	}
+
+	@GetMapping("/user-profile-view")
+	public String userProfile(Model model) throws Exception {
+	    // Supongamos que el ID del usuario se obtiene de la sesión o de otro lugar
+	    Long userId = 2L; // 
+	    User user = userService.getUserById(userId);
+
+	    // Agregar el objeto al modelo
+	    model.addAttribute("user", user);
+	    return "user-profile-view";
 	}
 
 

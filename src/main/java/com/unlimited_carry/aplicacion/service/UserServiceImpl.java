@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
 		to.setFirstName(from.getFirstName());
 		to.setLastName(from.getLastName());
 		to.setNPhone(from.getNPhone());
+		to.setNDocument(from.getNDocument());
 		to.setEmail(from.getEmail());
 		to.setRoles(from.getRoles());
 	}
